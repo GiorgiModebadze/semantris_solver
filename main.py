@@ -1,7 +1,7 @@
 from argparse import ArgumentParser
-from custom_model_generator import create_custom_model
-from model_2 import run_model as run_model_2
-from model_1 import run_model as run_model_1
+from models.custom_model_generator import create_custom_model
+from models.model_2 import run_model as run_model_2
+from models.model_1 import run_model as run_model_1
 
 '''
     We started with model 1 using the api calls to get synonyms each time
