@@ -14,6 +14,21 @@ Result:
 
 ![](resources/play.gif)
 
+# How to run it ?
+
+```bash
+pip3 install requirements.txt
+
+python -m spacy download en_core_web_lg
+
+# Depending on the model 1 or 2. Using Model 2 will first try to generate model
+# Which might take some time. 
+python3 main.py -m 1
+
+```
+
+Once game starts you need to manually click start arcade button.
+Afterwards it will start playing on its own
 
 # Process
 
