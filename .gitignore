@@ -1,7 +1,5 @@
 venv
 .ipynb_checkpoints
-*.ipynb
-ourmodel.json
 words_with_similars.json
 .DS_Store
 __pycache__
