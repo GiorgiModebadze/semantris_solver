@@ -7,4 +7,5 @@ Game is easy to play. In the Arcade mode you get your target word then you type 
 While time goes on more and more words are added to the queue and if you reach top of the screen you lose.
 
 Result:
+
 ![](https://media.giphy.com/media/hVOjgIFFV6BN3r2MeY/giphy.gif)
