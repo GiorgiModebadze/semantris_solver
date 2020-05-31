@@ -1,60 +1,29 @@
-from selenium import webdriver
-from selenium.webdriver.common.keys import Keys
-import time
-import requests
-import json
-from selenium.webdriver.common.keys import Keys
+from argparse import ArgumentParser
+from custom_model_generator import create_custom_model
+from model_2 import run_model as run_model_2
+from model_1 import run_model as run_model_1
 
+'''
+    We started with model 1 using the api calls to get synonyms each time
+    Model 2 is improvment which utilizes spacy to generate connections between words
+'''
 
-driver = webdriver.Chrome("./chromedriver")
-driver.get("https://research.google.com/semantris/")
+parser = ArgumentParser()
 
-#TODO : Find the way how to press the button automatically 
-time.sleep(15)
+# Allow users to choose between
+# As the default choosing 1 as it does not require creation of custom model
+parser.add_argument("-m", "--model", dest="model", default='1',
+                    help="1 or 2. For More Information see README.md")
 
-wordlist = []
-words = []
-index = 0
+args = parser.parse_args()
 
-target_index = 0
+model_name = 'custom_model'
+base_score = 0.3
 
-while True:
+if __name__ == '__main__':
 
-    TARGET = []
-    while len(TARGET) == 0:  
-        TARGET =  driver.execute_script("return this.game.currentGame.targetLines")
-
-    if target_index > 0 and len(TARGET) >= target_index and index>=len(words):
-        target_index = 0
-
-    print("target", TARGET)
-    TARGET = TARGET[target_index].replace(' ', '+')
-    
-    wordlist.append(TARGET)
-
-
-    if len(wordlist) > 1 and wordlist[-1] == wordlist[-2]:
-        index += 1
+    if args.model == '2':
+        create_custom_model(base_score, model_name)
+        run_model_2(model_name)
     else:
-        words = requests.get(f'http://api.datamuse.com/words?ml={TARGET}').json()
-        index = 0
-
-    # out of bound so we move to next word
-    if len(words) <= index:
-        target_index+=1
-        continue
-    
-
-    bestMatch = words[index]['word']
-    print("Best Match", bestMatch)
-
-    if bestMatch[:3].lower() in TARGET.lower():
-        print("We Continues")
-        index +=1
-        continue
-
-    driver.execute_script(f'this.game.currentGame.userSubmit("{bestMatch}","{bestMatch}")')
-    time.sleep(2 - len(wordlist) * 0.01 if 2 >= len(wordlist) * 0.01 else 0.2 )
-
-
-driver.close()
+        run_model_1()
