@@ -19,7 +19,7 @@ Result:
 ```bash
 pip3 install requirements.txt
 
-python -m spacy download en_core_web_lg
+python3 -m spacy download en_core_web_lg
 
 # Depending on the model 1 or 2. Using Model 2 will first try to generate model
 # Which might take some time. 
