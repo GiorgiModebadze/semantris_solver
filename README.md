@@ -8,4 +8,6 @@ While time goes on more and more words are added to the queue and if you reach t
 
 Result:
 
-![](https://media.giphy.com/media/hVOjgIFFV6BN3r2MeY/giphy.gif)
+![](resources/play.gif)
+
+While it is fun to play its hard to top 5 000 point, not to mention 10 000 +
