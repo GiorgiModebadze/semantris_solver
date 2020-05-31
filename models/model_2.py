@@ -12,6 +12,7 @@ from operator import itemgetter
     For our model generation
 '''
 
+
 def run_model(model_name):
 
     # Loading custom model that we generated
@@ -52,13 +53,13 @@ def run_model(model_name):
         for i in TARGET:
             full += res[i]
 
-        # Sort best matches 
+        # Sort best matches
         words = sorted(full, key=itemgetter('score'), reverse=True)
 
         for word in words:
 
             bestMatch = word['word']
-            
+
             # Games allows for each target to give banned prefix. This allows more precise control of the
             # Words which can not be submitted
 
@@ -74,7 +75,7 @@ def run_model(model_name):
 
             if banned_prefix:
                 continue
-            
+
             print("Best Match", bestMatch)
 
             driver.execute_script(
@@ -86,7 +87,6 @@ def run_model(model_name):
             if TARGET != New_TARGET:
                 break
 
-            
         # Once game is over we print the score
         # BOARD: 4, ENDED: 3, PLAYING: 2, READY: 1
 
@@ -94,7 +94,8 @@ def run_model(model_name):
             "return this.game.currentGame.state")
 
         if game_state == "3":
-            print("Score:", driver.execute_script("return this.game.currentGame.points"))
+            print("Score:", driver.execute_script(
+                "return this.game.currentGame.points"))
             break
 
     driver.close()

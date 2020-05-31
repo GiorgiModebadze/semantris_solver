@@ -82,7 +82,8 @@ def run_model():
             "return this.game.currentGame.state")
 
         if game_state == "3":
-            print("Score:", driver.execute_script("return this.game.currentGame.points"))
+            print("Score:", driver.execute_script(
+                "return this.game.currentGame.points"))
             break
 
     driver.close()
